@@ -3,22 +3,16 @@ function Create-Group
 param($displayname, $description)
 $params = @"
 {
-	"description": "$description",
-	"displayName": "$displayname",
-	"groupTypes": [
-"Security"
-],
-    "isAssignableToRole": true,
-    "securityEnabled": true,
-    "owners@odata.bind": [
-        ""
-    ],
-    "members@odata.bind": [
-        ""
-    ]
+  "description": "$description",
+  "displayName": "$displayname",
+  "groupTypes": [
+  ],
+  "isAssignableToRole": false,
+  "mailEnabled": false,
+  "securityEnabled": true,
+  "mailNickname": "$displayname"
 }
 "@
-#New-MgGroup -BodyParameter $params
 
 $graphApiVersion = "beta/"
 $Resource = ("groups")
