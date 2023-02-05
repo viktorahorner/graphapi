@@ -2,7 +2,7 @@ function Wipe-AndroidByUpn
 {
 param($Userprincipalname)
 $graphApiVersion = "beta/"
-$Resource = ("deviceManagement/managedDevices`?`$filter=userprincipalname eq '$MCCupn' and operatingSystem eq 'android'")
+$Resource = ("deviceManagement/managedDevices`?`$filter=userprincipalname eq '$Userprincipalname' and operatingSystem eq 'android'")
 $uri = 'https://graph.microsoft.com/'
 $MCCdeviceResponse = (Invoke-RestMethod -Uri ($uri+$graphApiVersion+$Resource) –Headers $authToken –Method Get -Verbose)
     $MCCdevice = $MCCdeviceResponse.value
