@@ -1,0 +1,11 @@
+function Retire-AndroidByUpn
+{
+param($Userprincipalname)
+$Resource = ("deviceManagement/managedDevices`?`$filter=userprincipalname eq '$Userprincipalname' and operatingSystem eq 'android'")
+$uri = 'https://graph.microsoft.com/'
+$MCCdeviceResponse = (Invoke-RestMethod -Uri ($uri+$graphApiVersion+$Resource) –Headers $authToken –Method Get -Verbose)
+$MCCdevice = $MCCdeviceResponse.value
+ $graphApiVersion = "beta/"
+ $Resource = ("deviceManagement/managedDevices/$(($MCCdevice).Id)/retire")
+(Invoke-RestMethod -Uri ("$($uri)$($graphApiVersion)$($Resource)") –Headers $authToken –Method POST -Verbose)
+}
