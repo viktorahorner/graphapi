@@ -5,7 +5,10 @@ $Resource = ("deviceManagement/managedDevices`?`$filter=userprincipalname eq '$U
 $uri = 'https://graph.microsoft.com/'
 $MCCdeviceResponse = (Invoke-RestMethod -Uri ($uri+$graphApiVersion+$Resource) –Headers $authToken –Method Get -Verbose)
 $MCCdevice = $MCCdeviceResponse.value
- $graphApiVersion = "beta/"
- $Resource = ("deviceManagement/managedDevices/$(($MCCdevice).Id)/retire")
-(Invoke-RestMethod -Uri ("$($uri)$($graphApiVersion)$($Resource)") –Headers $authToken –Method POST -Verbose)
+foreach ($MMCdev in $MCCdevice)
+{
+    $graphApiVersion = "beta/"
+    $Resource = ("deviceManagement/managedDevices/$(($MCCdevice).Id)/retire")
+    (Invoke-RestMethod -Uri ("$($uri)$($graphApiVersion)$($Resource)") –Headers $authToken –Method POST -Verbose)
+}
 }
