@@ -1,4 +1,4 @@
-function Create-Group
+function Create-MailGroup
 {
 param($displayname, $description)
 $params = @"
@@ -10,7 +10,7 @@ $params = @"
   ],
   "isAssignableToRole": false,
   "mailEnabled": true,
-  "securityEnabled": true,
+  "securityEnabled": false,
   "mailNickname": "$displayname"
 }
 "@
