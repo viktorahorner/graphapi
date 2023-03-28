@@ -1,5 +1,6 @@
 function Export-AllGroups
 {
+$MCCgroups = @()
 $filepath = 'C:\temp\'
 $graphApiVersion = "beta/"
 $Resource = ('groups?$top=999')
