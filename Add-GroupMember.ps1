@@ -24,7 +24,7 @@ $params = @"
 "@
 $group = Get-GroupByDisplayname -displayname $GroupDisplayname
 $graphApiVersion = "beta/"
-$Resource = ("groups/`{"+$group.Id+"`}/members/`$ref")
+$Resource = ("groups/`{"+$group[0].Id+"`}/members/`$ref")
 $uri = 'https://graph.microsoft.com/'
 $MCCgroupsResponse = (Invoke-RestMethod -Uri ($uri+$graphApiVersion+$Resource) –Headers $authToken –Method POST -Body $params -Verbose -ContentType application/json)
 }
