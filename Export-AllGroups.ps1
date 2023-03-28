@@ -17,6 +17,8 @@ $MCCgroupsResponse = (Invoke-RestMethod -Uri ($uri+$graphApiVersion+$Resource) â
             $MCCgroups += $MCCgroupsResponse.value
 
         }
+$MCCgroups | select displayname
 $MCCgroups | ConvertTo-Csv -Delimiter ';' | Out-File -FilePath ($filepath+'\groups_details.csv')
 Write-Host $MCCgroups.Count+'all group details have been exported to '($filepath+'groups_details.csv') -ForegroundColor Green
+Return $MCCgroups
 }
